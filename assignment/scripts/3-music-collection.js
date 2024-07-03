@@ -13,13 +13,14 @@ function addToCollection(collection, title, artist, yearPublished){
   return collection[collection.length - 1];
 }
 
-addToCollection(myCollection,"Tonic Solfa","Left Turns in Cross Traffic", "1996");
-addToCollection(myCollection,"Tonic Solfa","Left Turns in Cross Traffic", "1996");
-addToCollection(myCollection,"Tonic Solfa","Left Turns in Cross Traffic", "1996");
-addToCollection(myCollection,"Tonic Solfa","Left Turns in Cross Traffic", "1996");
-addToCollection(myCollection,"Tonic Solfa","Left Turns in Cross Traffic", "1996");
-addToCollection(myCollection,"Tonic Solfa","Left Turns in Cross Traffic", "1996");
-
+console.log(`Just added:`,addToCollection(myCollection,"Left Turns in Cross Traffic",
+  "Tonic Solfa", "1996"));
+console.log(`Just added:`,addToCollection(myCollection,"Great Lengths","PFR", "1992"));
+console.log(`Just added:`,addToCollection(myCollection,"Goldie's Last Day","PFR", "1993"));
+console.log(`Just added:`,addToCollection(myCollection,"Rescue","Acappella", "1990"));
+console.log('Just added:',addToCollection(myCollection,"Great Adventure","Steven Curtis Chapman", "1992"));
+console.log(`Just added:`,addToCollection(myCollection,"Greatest Hits: 1982-1989","Chicago", "1989"));
+*/
 
 // PLEASE DO NOT MODIFY THIS. Just leave it down here at the bottom. Think of it
 // as a lil' chunk of friendly code that you don't need to understand right now.
