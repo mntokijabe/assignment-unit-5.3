@@ -10,29 +10,40 @@ function addToCollection(collection, title, artist, yearPublished){
     yearPublished: yearPublished
   })
   console.log(collection);
-  return collection[collection.length - 1];
+  return collection[collection.length - 1];   //returns just the last album so it can be displayed
 }
 
-function showCollection(collection) {
+function showCollection(collection) {   //accepts the desired collection...mine or someone else's
   console.log('This collection contains:');
    for (let i=0; i < collection.length; i++){
-    //console.log(collection[i].title);
     console.log(`${collection[i].title} by ${collection[i].artist}, published in ${collection[i].yearPublished}`);
 
  }
 }
 
-console.log(`Just added:`,addToCollection(myCollection,"Left Turns in Cross Traffic",
-  "Tonic Solfa", 1996));
+function findByArtist(collection, artist) {
+  let artistGroup = [];
+  for (let i = 0; i < collection.length; i++){
+    if (collection[i].artist === artist) {
+      artistGroup.push(collection[i]);
+    }  //end if
+  }  //end for loop
+  return artistGroup;
+}
+
+console.log(`Just added:`,addToCollection(myCollection,"Left Turns in Cross Traffic","Tonic Solfa", 1996));
 console.log(`Just added:`,addToCollection(myCollection,"Great Lengths","PFR", 1992));
 console.log(`Just added:`,addToCollection(myCollection,"Goldie's Last Day","PFR", 1993));
 console.log(`Just added:`,addToCollection(myCollection,"Rescue","Acappella", 1990));
 console.log('Just added:',addToCollection(myCollection,"Great Adventure","Steven Curtis Chapman", 1992));
 console.log(`Just added:`,addToCollection(myCollection,"Greatest Hits: 1982-1989","Chicago", 1989));
 
-// console.log(myCollection[1]);
-//  console.log(myCollection[1].title + " and " + myCollection[1].artist);
+
 showCollection(myCollection);
+//entire collection should be consoled by the function
+
+console.log(findByArtist(myCollection, "PFR"));  //testing if included albums are found
+console.log(findByArtist(myCollection, "Hank Williams"));  //testing if non-existent album returns empty
 
 
 // PLEASE DO NOT MODIFY THIS. Just leave it down here at the bottom. Think of it
