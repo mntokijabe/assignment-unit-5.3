@@ -17,7 +17,6 @@ function showCollection(collection) {   //accepts the desired collection...mine 
   console.log('This collection contains:');
    for (let i=0; i < collection.length; i++){
     console.log(`${collection[i].title} by ${collection[i].artist}, published in ${collection[i].yearPublished}`);
-
  }
 }
 
@@ -30,6 +29,9 @@ function findByArtist(collection, artist) {
   }  //end for loop
   return artistGroup;
 }
+
+
+
 
 console.log(`Just added:`,addToCollection(myCollection,"Left Turns in Cross Traffic","Tonic Solfa", 1996));
 console.log(`Just added:`,addToCollection(myCollection,"Great Lengths","PFR", 1992));
@@ -44,6 +46,44 @@ showCollection(myCollection);
 
 console.log(findByArtist(myCollection, "PFR"));  //testing if included albums are found
 console.log(findByArtist(myCollection, "Hank Williams"));  //testing if non-existent album returns empty
+
+
+
+function search(collection, searchCriteria){
+  let foundCollection = [];
+  if(searchCriteria == []){
+    console.log(`you didn't enter anything to search for`);
+      return collection;
+  }
+  else if (searchCriteria[0].length > 0 && searchCriteria[1] > 0){
+    for (i = 0; i < collection.length; i++){
+      if(searchCriteria[0] === collection[i].artist && searchCriteria[1] === collection[i].yearPublished) {
+        foundCollection.push(collection[i]);
+      }  //end if match
+    }  // end for loop
+    if(foundCollection.length == 0){
+      console.log(`Sorry, no matches found`);
+    }
+    return foundCollection;
+  }
+    // end the search if, given that search criteria were provided
+  else {
+    console.log('Incomplete information provided')
+    return collection
+  }
+  }  // end function
+
+  
+console.log( `test what should work`);
+console.log(search(myCollection, ['PFR',1992]));
+console.log( `should be no match`);
+console.log(search(myCollection, ['PFR',1990]));
+console.log(`only artist`);
+console.log(search(myCollection, ['PFR']));
+console.log(`only year`);
+console.log(search(myCollection, [1990]));
+console.log(`empty`);
+console.log(search(myCollection,[]));
 
 
 // PLEASE DO NOT MODIFY THIS. Just leave it down here at the bottom. Think of it
