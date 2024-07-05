@@ -3,12 +3,11 @@ console.log('***** Music Collection *****')
 
 let myCollection = [];
 
-function addToCollection(collection, title, artist, yearPublished, tracks){
+function addToCollection(collection, title, artist, yearPublished){
   collection.push({
     title: title,
     artist: artist,
-    yearPublished: yearPublished,
-    tracks: tracks
+    yearPublished: yearPublished
   })
   console.log(collection);
   return collection[collection.length - 1];   //returns just the last album so it can be displayed
@@ -17,16 +16,9 @@ function addToCollection(collection, title, artist, yearPublished, tracks){
 function showCollection(collection) {   //accepts the desired collection...mine or someone else's
   console.log('This collection contains:');
    for (let album of collection){
-    console.log(`${album.title} by ${album.artist}, published in ${album.yearPublished} \n`)
-       if(album.tracks == null){
-       }
-        else {
-            for(let t = 0; t < album.tracks.length ; t ++){
-            console.log(`    ${t+1}.  ${album.tracks[t][0]}   \t${album.tracks[t][1]}\n`);
-            }  //end inside for loop
-        } //end else ...if tracks has items
-   }  //end the loop thru albums
-}  // end showCollection function
+    console.log(`${album.title} by ${album.artist}, published in ${album.yearPublished}`)
+   }
+}
 
 function findByArtist(collection, artist) {
   let artistGroup = [];
@@ -41,13 +33,12 @@ function findByArtist(collection, artist) {
 
 
 console.log(`TESTING addToCollection FUNCTION`);
-console.log(`Just added:`,addToCollection(myCollection,"Left Turns in Cross Traffic","Tonic Solfa", 1996,[["Cecelia",'2:10'],['Sold','2:06'],['El Paso','4:23']]));
-console.log(`Just added:`,addToCollection(myCollection,"Great Lengths","PFR", 1992, [['Great Lengths','2:32'],['Life Goes On','3:54']]));
-console.log(`Just added:`,addToCollection(myCollection,"Goldie's Last Day","PFR", 1993, [['Spinnin\' Round', '4:00'], ['Dying Man','3:27']]));
+console.log(`Just added:`,addToCollection(myCollection,"Left Turns in Cross Traffic","Tonic Solfa", 1996));
+console.log(`Just added:`,addToCollection(myCollection,"Great Lengths","PFR", 1992));
+console.log(`Just added:`,addToCollection(myCollection,"Goldie's Last Day","PFR", 1993));
 console.log(`Just added:`,addToCollection(myCollection,"Rescue","Acappella", 1990));
 console.log('Just added:',addToCollection(myCollection,"Great Adventure","Steven Curtis Chapman", 1992));
 console.log(`Just added:`,addToCollection(myCollection,"Greatest Hits: 1982-1989","Chicago", 1989));
-
 
 console.log(`TESTING showCollection FUNCTION`)
 showCollection(myCollection);
@@ -61,7 +52,7 @@ console.log(findByArtist(myCollection, "Hank Williams"));  //testing if non-exis
 
 function search(collection, searchCriteria){
   let foundCollection = [];
-  if(searchCriteria == null || Object.keys(searchCriteria) < 2 || searchCriteria.artist === '' || searchCriteria.yearPublished === ''){
+  if(typeof searchCriteria != "object" || Object.keys(searchCriteria) < 2 || searchCriteria.artist === '' || searchCriteria.yearPublished === ''){
     console.log('Incomplete information provided');
     return collection;
   }
