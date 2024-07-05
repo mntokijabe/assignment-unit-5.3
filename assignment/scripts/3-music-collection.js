@@ -15,8 +15,8 @@ function addToCollection(collection, title, artist, yearPublished){
 
 function showCollection(collection) {   //accepts the desired collection...mine or someone else's
   console.log('This collection contains:');
-   for (let i=0; i < collection.length; i++){
-    console.log(`${collection[i].title} by ${collection[i].artist}, published in ${collection[i].yearPublished}`);
+   for (let album of collection){
+    console.log(`${album.title} by ${album.artist}, published in ${album.yearPublished}`);
  }
 }
 
@@ -32,7 +32,7 @@ function findByArtist(collection, artist) {
 
 
 
-
+console.log(`TESTING addToCollection`);
 console.log(`Just added:`,addToCollection(myCollection,"Left Turns in Cross Traffic","Tonic Solfa", 1996));
 console.log(`Just added:`,addToCollection(myCollection,"Great Lengths","PFR", 1992));
 console.log(`Just added:`,addToCollection(myCollection,"Goldie's Last Day","PFR", 1993));
@@ -40,10 +40,11 @@ console.log(`Just added:`,addToCollection(myCollection,"Rescue","Acappella", 199
 console.log('Just added:',addToCollection(myCollection,"Great Adventure","Steven Curtis Chapman", 1992));
 console.log(`Just added:`,addToCollection(myCollection,"Greatest Hits: 1982-1989","Chicago", 1989));
 
-
+console.log(`TESTING showCollection`)
 showCollection(myCollection);
 //entire collection should be consoled by the function
 
+console.log(`TESTING findByArtist`);
 console.log(findByArtist(myCollection, "PFR"));  //testing if included albums are found
 console.log(findByArtist(myCollection, "Hank Williams"));  //testing if non-existent album returns empty
 
@@ -51,29 +52,24 @@ console.log(findByArtist(myCollection, "Hank Williams"));  //testing if non-exis
 
 function search(collection, searchCriteria){
   let foundCollection = [];
-  if(searchCriteria == []){
-    console.log(`you didn't enter anything to search for`);
-      return collection;
+  if(typeof searchCriteria != "object" || Object.keys(searchCriteria) < 2 || searchCriteria.artist != '' || searchCriteria.yearPublished != ''){
+    console.log('Incomplete information provided');
+    return collection;
   }
-  else if (searchCriteria[0].length > 0 && searchCriteria[1] > 0){
+  else{
     for (i = 0; i < collection.length; i++){
       if(searchCriteria[0] === collection[i].artist && searchCriteria[1] === collection[i].yearPublished) {
         foundCollection.push(collection[i]);
       }  //end if match
     }  // end for loop
-    if(foundCollection.length == 0){
+    if(foundCollection.length === 0){
       console.log(`Sorry, no matches found`);
     }
     return foundCollection;
   }
-    // end the search if, given that search criteria were provided
-  else {
-    console.log('Incomplete information provided')
-    return collection
-  }
-  }  // end function
+}
 
-  
+console.log(`TESTING SEARCH FUNCTION`); 
 console.log( `test what should work`);
 console.log(search(myCollection, ['PFR',1992]));
 console.log( `should be no match`);
@@ -84,6 +80,28 @@ console.log(`only year`);
 console.log(search(myCollection, [1990]));
 console.log(`empty`);
 console.log(search(myCollection,[]));
+console.log(`no object provided`);
+console.log(search(myCollection));
+
+// ORIGINAL ATTEMPT  
+//    else if (searchCriteria[0].length > 0 && searchCriteria[1] > 0){
+//     for (i = 0; i < collection.length; i++){
+//       if(searchCriteria[0] === collection[i].artist && searchCriteria[1] === collection[i].yearPublished) {
+//         foundCollection.push(collection[i]);
+//       }  //end if match
+//     }  // end for loop
+//     if(foundCollection.length == 0){
+//       console.log(`Sorry, no matches found`);
+//     }
+//     return foundCollection;
+//   }
+//     // end the search if, given that search criteria were provided
+//   else {
+//     console.log('Incomplete information provided')
+//     return collection
+//   }
+//   }  // end function
+
 
 
 // PLEASE DO NOT MODIFY THIS. Just leave it down here at the bottom. Think of it
