@@ -32,7 +32,7 @@ function findByArtist(collection, artist) {
 
 
 
-console.log(`TESTING addToCollection`);
+console.log(`TESTING addToCollection FUNCTION`);
 console.log(`Just added:`,addToCollection(myCollection,"Left Turns in Cross Traffic","Tonic Solfa", 1996));
 console.log(`Just added:`,addToCollection(myCollection,"Great Lengths","PFR", 1992));
 console.log(`Just added:`,addToCollection(myCollection,"Goldie's Last Day","PFR", 1993));
@@ -40,11 +40,11 @@ console.log(`Just added:`,addToCollection(myCollection,"Rescue","Acappella", 199
 console.log('Just added:',addToCollection(myCollection,"Great Adventure","Steven Curtis Chapman", 1992));
 console.log(`Just added:`,addToCollection(myCollection,"Greatest Hits: 1982-1989","Chicago", 1989));
 
-console.log(`TESTING showCollection`)
+console.log(`TESTING showCollection FUNCTION`)
 showCollection(myCollection);
 //entire collection should be consoled by the function
 
-console.log(`TESTING findByArtist`);
+console.log(`TESTING findByArtist FUNCTION`);
 console.log(findByArtist(myCollection, "PFR"));  //testing if included albums are found
 console.log(findByArtist(myCollection, "Hank Williams"));  //testing if non-existent album returns empty
 
@@ -52,7 +52,7 @@ console.log(findByArtist(myCollection, "Hank Williams"));  //testing if non-exis
 
 function search(collection, searchCriteria){
   let foundCollection = [];
-  if(typeof searchCriteria != "object" || Object.keys(searchCriteria) < 2 || searchCriteria.artist != '' || searchCriteria.yearPublished != ''){
+  if(typeof searchCriteria != "object" || Object.keys(searchCriteria) < 2 || searchCriteria.artist === '' || searchCriteria.yearPublished === ''){
     console.log('Incomplete information provided');
     return collection;
   }
