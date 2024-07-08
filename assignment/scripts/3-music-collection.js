@@ -65,6 +65,24 @@ function search(collection, searchCriteria){
     console.log('Incomplete information provided');
     return collection;
   }
+  else if(searchCriteria.length == 3){  //only search for track
+    //console.log(searchCriteria[2]);
+    for (i = 0; i < collection.length; i++){
+       // console.log(collection[i].tracks[0][0]);
+        if(collection[i].tracks != null){   // ignore albums that don't have tracks listed
+            for (item of collection[i].tracks){
+                if(searchCriteria[2] == item[0]) {    // does the track requested match the album track
+                foundCollection.push(collection[i]);   //this identifies the whole album it is in
+                console.log(`'${searchCriteria[2]}' was found in ${collection[i].title} by ${collection[i].artist} made in ${collection[i].yearPublished}`)
+                }  //end if track matches
+            }  // end track search for loop
+        }  // end if album contains tracks
+      }  // end the main for loop
+    if (foundCollection.length === 0){
+        console.log(`'${searchCriteria[2]}' not found in this collection`);
+    }  // end the if not found
+    return foundCollection;
+  }  // end if searching for a track
   else{
     for (i = 0; i < collection.length; i++){
       if(searchCriteria[0] === collection[i].artist && searchCriteria[1] === collection[i].yearPublished) {
@@ -78,9 +96,9 @@ function search(collection, searchCriteria){
   }
 }
 
-console.log(`TESTING SEARCH FUNCTION`); 
+console.log(`TESTING SEARCH FUNCTION (no tracks included)`); 
 console.log( `test what should work`);
-console.log(search(myCollection, ['PFR',1992]));
+console.log(search(myCollection, ['PFR',1992]));  //testing regular, no track given
 console.log( `should be no match`);
 console.log(search(myCollection, ['PFR',1990]));
 console.log(`only artist`);
@@ -91,6 +109,9 @@ console.log(`empty`);
 console.log(search(myCollection,[]));
 console.log(`no object provided`);
 console.log(search(myCollection));
+console.log('TESTING SEARCH by TRACK')
+console.log(search(myCollection, ['PFR',1992,'Great Lengths']));  //testing if track can be found
+console.log(search(myCollection, ['PFR',1992,'Dying Man']));  //testing - ignoring year/artist
 
 // ORIGINAL ATTEMPT  
 //    else if (searchCriteria[0].length > 0 && searchCriteria[1] > 0){
